@@ -12,9 +12,8 @@
 
         <!-- Styles -->
         @livewireStyles
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -36,9 +35,11 @@
                 {{ $slot }}
             </main>
         </div>
-
+        <!-- Scripts -->
         @stack('modals')
 
         @livewireScripts
+        
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
