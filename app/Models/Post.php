@@ -8,4 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    //One to Many Relationship (Inverse)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //One to Many Relationship (Inverse)
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    //Many to Many Relationship
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    //Polymorphic Relationship (User & Post)
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+
+    //Polymorphic Relationship (User & Post)
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

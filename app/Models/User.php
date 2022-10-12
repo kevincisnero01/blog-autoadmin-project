@@ -58,4 +58,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //One to many Relationship
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    //Polymorphic Relationship (User & Post)
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
