@@ -1,5 +1,28 @@
 <x-app-layout>
-    <div class="container bg-red-500">
-        Hello Kevin! The Super dupe programmer!
+<div class="container">
+    <div class="grid grid-cols-3 gap-6">
+        @foreach ($posts as $post)
+            <article 
+                class="w-full h-80 bg-cover bg-center @if($loop->first) col-span-2 @endif" 
+                style="background-image: url({{ Storage::url($post->image->url) }})"
+            >
+                <div class=" w-full h-full px-8 flex flex-col justify-center">
+                    <div>
+                        @foreach ($post->tags as $tag)
+                            <a href="#" class="inline-block h-6 px-3 text-white bg-{{$tag->color}}-600 rounded-full" >
+                                {{ $tag->name }}
+                            </a>    
+                        @endforeach
+                    </div>
+                    <h1 class="text-4xl  text-white leading-8 font-bold">
+                        <a href="#">{{ $post->name }}</a>
+                    </h1>
+                </div>
+            </article>
+        @endforeach
+        <div>
+            {{ $posts->links() }}
+        </div>
     </div>
+</div>
 </x-app-layout>
