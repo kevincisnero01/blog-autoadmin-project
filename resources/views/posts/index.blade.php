@@ -1,6 +1,6 @@
 <x-app-layout>
 <div class="container">
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-3 gap-6 mt-4">
         @foreach ($posts as $post)
             <article 
                 class="w-full h-80 bg-cover bg-center @if($loop->first) col-span-2 @endif" 
@@ -20,9 +20,9 @@
                 </div>
             </article>
         @endforeach
-        <div>
-            {{ $posts->links() }}
-        </div>
+    </div>
+    <div class="my-4">
+        {{ $posts->links() }}
     </div>
 </div>
 </x-app-layout>
