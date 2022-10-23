@@ -6,9 +6,9 @@
         {{ $post->extract}}
     </div>
 
-    <div class="grid grid-cols-3">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{--Main Content--}}
-        <div class="col-span-2">
+        <div class="lg:col-span-2">
             <figure>
                 <img class="w-full h-80 object-cover object-center my-2" src="{{ Storage::url($post->image->url)}}" alt="">
             </figure>
@@ -19,7 +19,7 @@
         </div>
         
         {{--Related Content--}}
-        <aside class="ml-2">
+        <aside>
             <h2 class="text-2xl font-bold text-gray-500 mb-4">Relacionados con <u>{{$post->category->name}}</u></h2>
             <ul>
                 @foreach ($related as $item)
