@@ -30,7 +30,7 @@ class PostController extends Controller
         $posts = Post::where('category_id',$category->id)
                         ->where('status',2)
                         ->latest('id')
-                        ->paginate(6);
+                        ->paginate(3);
         return view('posts.category',compact('posts','category'));
     }
 }
