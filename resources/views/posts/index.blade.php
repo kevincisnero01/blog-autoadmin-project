@@ -9,7 +9,7 @@
                 <div class=" w-full h-full px-8 flex flex-col justify-center">
                     <div>
                         @foreach ($post->tags as $tag)
-                            <a href="#" class="inline-block h-6 px-3 text-white bg-{{$tag->color}}-600 rounded-full" >
+                            <a href="{{ route('posts.tag',$tag) }}" class="inline-block h-6 px-3 text-white bg-{{$tag->color}}-600 rounded-full" >
                                 {{ $tag->name }}
                             </a>    
                         @endforeach
