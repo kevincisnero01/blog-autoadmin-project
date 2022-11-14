@@ -79,7 +79,7 @@ class CategoryController extends Controller
         ]);
 
         $category->update($request->all());
-        return redirect()->route('admin.categories.index')->with(['info' => 'Categoría actualizada exitosamente.']);
+        return redirect()->route('admin.categories.index')->with(['info' => 'Categoría Actualizada exitosamente.']);
     }
 
     /**
@@ -88,8 +88,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with(['info' => 'Categoría Eliminada exitosamente.']);
+
     }
 }
