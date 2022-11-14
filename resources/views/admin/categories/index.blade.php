@@ -37,12 +37,29 @@
                         <td>{{ $category->name }}</td>
                         <td width="200px" class="text-center">
                             <a href="{{ route('admin.categories.edit', $category->id)}}" class="btn btn-primary btn-xs">Editar</a>
-                            <form action="{{ route('admin.categories.destroy', $category->id)}}" method="post" class="d-inline">
-                                @csrf
-                                @method('delete')
-
-                                <button type="submit" class="btn btn-danger btn-xs">Eliminar</button>
-                            </form>
+                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDelete{{$category->id}}">Eliminar</button>
+                            
+                            <!-- Modal Confirm-->
+                            <div class="modal fade" id="confirmDelete{{$category->id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title font-weight-bold">Confirmación</h4>
+                                </div>   
+                                <div class="modal-body">
+                                    <form  action="{{ route('admin.categories.destroy', $category->id)}}" method="post" class="d-inline" id="formDelete{{$category->id}}">
+                                        @csrf
+                                        @method('delete')
+                                        <h5>¿Estas seguro de eliminar la categoria <strong>{{$category->name}}</strong>?</h5>    
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-danger" form="formDelete{{$category->id}}">Eliminar</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -51,5 +68,6 @@
         </div>    
     </div>
 
+    
 @stop
 
