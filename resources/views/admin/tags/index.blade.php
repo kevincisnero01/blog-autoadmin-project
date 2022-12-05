@@ -19,7 +19,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a href="{{ route('admin.tags.create')}}" class="btn btn-secondary btn-lg float-right">Agregar Etiqueta</a>
+        <a href="{{ route('admin.tags.create')}}" class="btn btn-secondary btn-lg float-right">Crear Etiqueta</a>
     </div>
     <div class="card-body">
     <table class="table table-striped">

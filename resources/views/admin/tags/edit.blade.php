@@ -3,18 +3,28 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Crear Etiqueta</h1>
+    <h1>Editar Etiqueta</h1>
 @stop
 
 @section('content')
+
+@if(session('status'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{session('status')}}</strong>.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
 <div class="card">
     <div class="card-body">
-    {!! Form::open(['route' => 'admin.tags.store']) !!}
+    {!! Form::model($tag,['route' => ['admin.tags.update',$tag->id], 'method' => 'put']) !!}
 
         @include('admin.tags.partials.form')
 
-        {!! Form::submit('Guardar Etiqueta',['class' => 'btn btn-primary']) !!}
-        
+        {!! Form::submit('Editar Etiqueta',['class' => 'btn btn-primary']) !!}
+
     {!! Form::close() !!}
     </div>    
 </div>

@@ -75,8 +75,21 @@ class TagController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
+        $colors = [
+            'blue' => 'Color Azul',
+            'red' => 'Color Rojo',
+            'yellow' => 'Color Amarillo',
+            'green' => 'Color Verde',
+            'black' => 'Color Negro',
+            'brown' => 'Color Marron',
+            'pink' => 'Color Rosado',
+            'gray' => 'Color Gris',
+            'purple' => 'Color Morado',
+        ];
+
+        return view('admin.tags.edit', compact('tag','colors'));
     }
 
     /**
@@ -86,9 +99,17 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'color' => 'required'
+        ]);
+
+        $tag->update($data);
+
+        return redirect()->route('admin.tags.edit', $tag->id)->with('status','Actualización Exitosa');
     }
 
     /**
