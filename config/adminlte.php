@@ -320,6 +320,11 @@ return [
             'icon' => 'fab fa-fw fa-buffer',
         ],
         [
+            'text' => 'Etiquetas',
+            'route' => 'admin.tags.index',
+            'icon' => 'fas fa-tags'
+        ],
+        [
             'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
