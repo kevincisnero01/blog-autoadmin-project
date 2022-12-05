@@ -24,8 +24,19 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.tags.create');
+    {   
+        $colors = [
+            'blue' => 'Color Azul',
+            'red' => 'Color Rojo',
+            'yellow' => 'Color Amarillo',
+            'green' => 'Color Verde',
+            'black' => 'Color Negro',
+            'brown' => 'Color Marron',
+            'pink' => 'Color Rosado',
+            'gray' => 'Color Gris',
+            'purple' => 'Color Morado',
+        ];
+        return view('admin.tags.create',compact('colors'));
     }
 
     /**
@@ -36,7 +47,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'color' => 'required'
+        ]);
+
+        $tag = Tag::create($data);
+
+        return redirect()->route('admin.tags.index',['tag' => $tag])->with('status','Registro Exitoso');
     }
 
     /**
