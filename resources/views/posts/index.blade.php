@@ -3,8 +3,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         @foreach ($posts as $post)
             <article 
-                class="w-full h-80 bg-cover bg-center @if($loop->first) sm:col-span-2 @endif" 
-                style="background-image: url({{ Storage::url($post->image->url) }})"
+                class="w-full h-80 bg-cover bg-center @if($loop->first) sm:col-span-2 @endif"
+                style="background-image: url({{ asset(Storage::url($post->image->url)) }})" 
             >
                 <div class=" w-full h-full px-8 flex flex-col justify-center">
                     <div>
