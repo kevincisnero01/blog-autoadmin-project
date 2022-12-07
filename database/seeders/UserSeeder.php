@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'profile_photo_path' =>  $image->url,
 
-        ]);
+        ])->assignRole('Admin');
 
         User::factory(9)->create();
     }
