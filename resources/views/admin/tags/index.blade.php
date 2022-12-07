@@ -75,7 +75,7 @@
     </table>
 
     <div class="mt-2 float-right">
-        {{ $tags->links() }}
+        {{ $tags->links('pagination::bootstrap-4') }}
     </div>
 
     </div>    

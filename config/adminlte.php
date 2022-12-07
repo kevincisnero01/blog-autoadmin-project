@@ -309,9 +309,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Dashboard',
-            'route'         => 'admin.home',
-            'icon'        => 'fas fa-tachometer-alt fa-fw'
+            'text' => 'Dashboard',
+            'route' => 'admin.home',
+            'icon' => 'fas fa-tachometer-alt fa-fw'
         ],
         ['header' => 'Administrador'],
         [
