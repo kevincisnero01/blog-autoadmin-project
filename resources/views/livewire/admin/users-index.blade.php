@@ -1,5 +1,10 @@
 <div>
     <div class="card">
+        <div class="card-header">
+            <input wire:model="search" class="form-control" placeholder="Ingrese el nombre o email del usuario a buscar...">
+        </div>
+        
+        @if($users->count())
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -34,5 +39,11 @@
                 {{ $users->links('pagination::bootstrap-4') }}
             </div>
         </div>
+
+        @else
+        <div class="card-body" class="text-center">
+           <strong>No hay registros</strong> 
+        </div>
+        @endif
     </div>
 </div>
