@@ -1,4 +1,13 @@
 <div>
+    @if(session('status'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{session('status')}}</strong>.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <input wire:model="search" class="form-control" placeholder="Ingrese el nombre o email del usuario a buscar...">
@@ -29,7 +38,10 @@
                         </td>
                         <td width="200px" class="text-center">
                             <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
-                            <a href="#" class="btn btn-danger">Eliminar</a>
+                            <form action="{{ route('admin.users.destroy',$user->id)}}" method="post" class="d-inline-block" onclick="return confirm('¿Esta seguro de eliminar el registro?')">
+                                @csrf @method('delete')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
