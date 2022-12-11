@@ -28,7 +28,7 @@
                             {{ $user->email }}
                         </td>
                         <td width="200px" class="text-center">
-                            <a href="#" class="btn btn-primary">Editar</a>
+                            <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>

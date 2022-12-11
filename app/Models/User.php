@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -72,5 +73,14 @@ class User extends Authenticatable
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function getMyRoleAttribute()
+    {
+        return  DB::table('model_has_roles')
+                ->select('roles.id', 'roles.name')
+                ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                ->where('model_id',$this->id)
+                ->first();
     }
 }
