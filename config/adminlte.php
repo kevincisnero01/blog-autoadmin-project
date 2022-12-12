@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -313,12 +313,12 @@ return [
             'route' => 'admin.home',
             'icon' => 'fas fa-tachometer-alt fa-fw'
         ],
+        ['header' => 'Administrador'],
         [
             'text' => 'Usuarios',
             'route' => 'admin.users.index',
             'icon' => 'fas fa-users fa-fw'
         ],
-        ['header' => 'Administrador'],
         [
             'text' => 'Categoría',
             'route'  => 'admin.categories.index',
@@ -329,48 +329,16 @@ return [
             'route' => 'admin.tags.index',
             'icon' => 'fas fa-tags'
         ],
+        ['header' => 'Blog'],
         [
-            'text' => 'Perfil',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Lista de post',
+            'route'  => 'admin.posts.index',
+            'icon' => 'fas fa-fw fa-clipboard',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'Crear post',
+            'route'  => 'admin.posts.create',
+            'icon' => 'fas fa-fw fa-file',
         ],
     ],
 
