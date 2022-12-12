@@ -13,7 +13,11 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Tipo</th>
-                        <th></th>
+                        <th>
+                            @can('admin.users.edit','admin.users.destroy')
+                                Opciones
+                            @endcan
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,11 +38,15 @@
                             @endempty
                         </td>
                         <td width="200px" class="text-center">
+                            @can('admin.users.edit')
                             <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
+                            @endcan
+                            @can('admin.users.destroy')
                             <form action="{{ route('admin.users.destroy',$user->id)}}" method="post" class="d-inline-block" onclick="return confirm('¿Esta seguro de eliminar el registro?')">
                                 @csrf @method('delete')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

@@ -3,31 +3,36 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    @can('admin.categories.create')
+        <a href="{{ route('admin.tags.create')}}" class="btn btn-secondary float-right">Crear Etiqueta</a>
+    @endcan
+
     <h1>Listado de Etiquetas</h1>
-@stop
 
-@section('content')
-
-@if(session('status'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    @if(session('status'))
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
         <strong>{{session('status')}}</strong>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
-@endif
 
+@endif
+@stop
+
+@section('content')
 <div class="card">
-    <div class="card-header">
-        <a href="{{ route('admin.tags.create')}}" class="btn btn-secondary btn-lg float-right">Crear Etiqueta</a>
-    </div>
     <div class="card-body">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
-                <th width="200px" class="text-center">Opciones</th>
+                <th width="200px" class="text-center">
+                    @can('admin.categories.edit','admin.categories.edit')
+                        Opciones
+                    @endcan
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +45,11 @@
                     {{ $tag->name }}
                 </td>
                 <td class="text-center">
+                @can('admin.categories.edit')
                     <a href="{{ route('admin.tags.edit', $tag->id ) }}" class="btn btn-info btn-xs">Editar</a>
+                @endcan
+
+                @can('admin.categories.edit')
                     <form action="{{ route('admin.tags.destroy',$tag->id )}}" method="post" class="d-inline-block" id="formDelete{{$tag->id}}">
                         @csrf
                         @method('delete')
@@ -67,7 +76,8 @@
                                 </div>
                             </div>
                             </div>
-                    </form>    
+                    </form>
+                @endcan    
                 </td>
             </tr>    
             @endforeach

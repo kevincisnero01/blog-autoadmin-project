@@ -3,8 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-
-    <a href="{{ route('admin.users.create') }}" class="btn btn-secondary float-right">Crear Usuario</a>
+    @can('admin.users.create')
+        <a href="{{ route('admin.users.create') }}" class="btn btn-secondary float-right">Crear Usuario</a>
+    @endcan
 
     <h1>Listado de Usuarios</h1>
 
