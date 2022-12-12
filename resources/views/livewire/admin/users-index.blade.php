@@ -12,6 +12,7 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Email</th>
+                        <th>Tipo</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,6 +27,11 @@
                         </td>
                         <td>
                             {{ $user->email }}
+                        </td>
+                        <td>
+                            @empty(!$user->my_role)
+                                {{ $user->my_role->name }}
+                            @endempty
                         </td>
                         <td width="200px" class="text-center">
                             <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
