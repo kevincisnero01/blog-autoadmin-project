@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-    <h1>Actualizar Usuario</h1>
+    <h1>Crear Usuario</h1>
 
     @if(session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -14,25 +14,31 @@
             </button>
         </div>
     @endif
-
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-    {!! Form::model($user,['route' => ['admin.users.update',$user->id],'method' => 'put']) !!}
+        {!! Form::open(['route' => 'admin.users.store','method' => 'post']) !!}
+
         <div class="form-group">
             {!! Form::label('name','Nombre') !!}
             {!! Form::text('name',null, ['class' => 'form-control','placeholder' => 'Ingrese su nombre','required' => 'required']) !!}
             @error('name') <span class="text-red">{{ $message }}</span> @enderror
         </div>
-
+        
         <div class="form-group">
             {!! Form::label('email','Correo') !!}
             {!! Form::text('email',null, ['class' => 'form-control','placeholder' => 'Ingrese su correo example@gmail.com','required' => 'required']) !!}
             @error('email') <span class="text-red">{{ $message }}</span> @enderror
         </div>
-
+        
+        <div class="form-group">
+            {!! Form::label('password','Contraseña') !!}
+            {!! Form::password('password', ['class' => 'form-control','placeholder' => 'Ingrese su contraseña','required' => 'required']) !!}
+            @error('password') <span class="text-red">{{ $message }}</span> @enderror
+        </div>
+        
         <div class="form-group">
             <label>Roles</label><br>               
             @foreach ($roles as $role)
@@ -45,11 +51,11 @@
             @error('role') <span class="text-red">{{ $message }}</span> @enderror
         </div>
 
-        {!! Form::submit('Guardar Cambios', ['class' => 'btn btn-primary btn-lg mt-2']) !!}
+        {!! Form::submit('Guardar Datos', ['class' => 'btn btn-primary btn-lg mt-2']) !!}
         
         <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mt-2 float-right">Volver</a>
 
     {!! Form::close() !!}
     </div>
-</div>  
+</div>
 @stop

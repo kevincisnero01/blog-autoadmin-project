@@ -14,12 +14,41 @@ class UserController extends Controller
         return view('admin.users.index');
     }
 
-    public function edit(User $user)
-    {
-        //GET ALL ROLES
+    public function create()
+    {   
         $roles = Role::all();
 
-        //GET THE ROLE OF USER 
+        return view('admin.users.create', compact('roles'));
+    }
+
+    public function store(Request $request)
+    {   
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required'
+        ]);
+
+        //ENCRIPT PASS
+        $data['password'] = bcrypt($request->password);
+
+        //CREATE USER
+        $user = User::create($data)->assignRole('Admin');
+
+        //CREATE ROLE
+        $user->roles()->sync($request->role);
+
+        return redirect()->route('admin.users.index', $user)->with('status', 'Usuario creado con Exito');
+
+    }
+
+    public function edit(User $user)
+    {
+        //GET ROLES
+        $roles = Role::all();
+
+        //GET & SET ROLE 
         $user['role'] = empty(!$user->my_role) ? $user->my_role->id : null;
 
         return view('admin.users.edit', compact('user','roles'));
@@ -33,13 +62,13 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
-        //UPDATE DATA USER
+        //UPDATE USER
         $user->update($data);
 
         //UPDATE ROLE
         $user->roles()->sync($request->role);
 
-        return redirect()->route('admin.users.edit', $user)->with('status', 'Actualización con Exito');
+        return redirect()->route('admin.users.edit', $user)->with('status', 'Usuario actualizado con Exito');
 
     }
 
@@ -47,6 +76,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index', $user)->with('status', 'Eliminación con Exito');
+        return redirect()->route('admin.users.index', $user)->with('status', 'Usuario eliminado con Exito');
     }
 }
