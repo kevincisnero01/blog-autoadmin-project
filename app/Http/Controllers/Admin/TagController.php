@@ -7,22 +7,22 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{   
+    public function __construct()
+    {
+        $this->middleware(['can:admin.tags.index'])->only('index');
+        $this->middleware(['can:admin.tags.create'])->only('create');
+        $this->middleware(['can:admin.tags.store'])->only('store');
+        $this->middleware(['can:admin.tags.edit'])->only('edit');
+        $this->middleware(['can:admin.tags.update'])->only('update');
+        $this->middleware(['can:admin.tags.destroy'])->only('destroy');
+    }
+
     public function index()
     {
         return view('admin.tags.index', ['tags' => Tag::latest()->paginate(10)] );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {   
         $colors = [
@@ -39,12 +39,7 @@ class TagController extends Controller
         return view('admin.tags.create',compact('colors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -58,23 +53,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index',['tag' => $tag])->with('status','Registro Exitoso');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show($tag)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Tag $tag)
     {
         $colors = [
@@ -92,13 +70,6 @@ class TagController extends Controller
         return view('admin.tags.edit', compact('tag','colors'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request,Tag $tag)
     {
         $data = $request->validate([
@@ -112,12 +83,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', $tag->id)->with('status','Actualización Exitosa');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $tag
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Tag $tag)
     {
         $tag->delete();

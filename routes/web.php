@@ -13,15 +13,3 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
 
 Route::get('admin', [HomeController::class,'index']);
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-
