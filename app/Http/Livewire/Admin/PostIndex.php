@@ -18,9 +18,9 @@ class PostIndex extends Component
     }
 
     public function render()
-    {   
+    {
         $posts = Post::where('name','LIKE',"%$this->search%")
-                    ->latest()
+                    ->latest('id')
                     ->paginate();
 
         return view('livewire.admin.post-index', compact('posts'));

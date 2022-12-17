@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','slug','extract','body','status','user_id','category_id'];
+
     //One to Many Relationship (Inverse)
     public function user()
     {
