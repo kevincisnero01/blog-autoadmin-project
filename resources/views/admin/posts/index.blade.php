@@ -6,9 +6,9 @@
     <a href="{{ route('admin.posts.create') }}" class="btn btn-secondary float-right">Crear Post</a>
     <h1>Listado de Post</h1>
 
-     @if (session('info'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{session('info')}}</strong>.
+     @if (session('status'))
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+        <strong>{{ session('status')}}</strong>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
