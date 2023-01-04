@@ -33,6 +33,7 @@ class StorePostRequest extends FormRequest
             'name' => 'required|string',
             'slug' => 'required|string',
             'status' => 'required|in:1,2',
+            'file' => 'image'
         ];
 
         if($this->status == 2)
