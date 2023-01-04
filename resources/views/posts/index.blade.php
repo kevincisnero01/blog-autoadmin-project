@@ -4,7 +4,14 @@
         @foreach ($posts as $post)
             <article 
                 class="w-full h-80 bg-cover bg-center @if($loop->first) sm:col-span-2 @endif"
-                style="background-image: url({{ asset(Storage::url($post->image->url)) }})" 
+                style="background-image: 
+                url(
+                    @if($post->image)
+                        {{asset(Storage::url($post->image->url))}}
+                    @else
+                        https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg
+                    @endif
+                )" 
             >
                 <div class=" w-full h-full px-8 flex flex-col justify-center">
                     <div>
