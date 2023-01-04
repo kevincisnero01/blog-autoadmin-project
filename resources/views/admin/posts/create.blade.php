@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        {!! Form::open(['route' => 'admin.posts.store']) !!}
+        {!! Form::open(['route' => 'admin.posts.store', 'files' => 'true']) !!}
 
             {!! Form::hidden('user_id', auth()->user()->id) !!}
 
@@ -40,6 +40,21 @@
                 </label>
             @endforeach
             @error('tags') <span class="text-danger d-block">{{ $message}}</span> @enderror
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    {!! Form::label('file', 'Imagen de Post') !!}
+                    {!! Form::file('file', ['class' => 'form-control-file']) !!}
+                </div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores corrupti expedita odit labore enim perspiciatis beatae illum laborum aliquid quibusdam omnis facilis deleniti, culpa tempore explicabo, eligendi fuga exercitationem? Obcaecati!</p>
+            </div>
+            <div class="col">
+                <div class="image-wrapper">
+                    <img id="picture" src="https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg" alt="">
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -74,11 +89,31 @@
 </div>
 @stop
 
+@section('css')
+    <style>
+
+    .image-wrapper{
+        position:relative;
+        padding-bottom: 56.25%;
+    }
+
+    .image-wrapper img{
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 90%;
+        margin-top:5%;
+    }
+
+    </style>
+@endsection
+
 @section('js')
     <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
 
     <script>
+
         $(document).ready( function() {
             $("#name").stringToSlug({
                 setEvents: 'keyup keydown blur',
@@ -86,22 +121,33 @@
                 space: '-'
             });
         });
-    </script>
 
-    <script>
-    ClassicEditor
-        .create( document.querySelector( '#extract' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-    </script>
+        ClassicEditor
+            .create( document.querySelector( '#extract' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    
+        ClassicEditor
+            .create( document.querySelector( '#body' ) )
+            .catch( error => {
+                console.error( error );
+            } );
 
-    <script>
-    ClassicEditor
-        .create( document.querySelector( '#body' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+        //Change Image
+        document.getElementById("file").addEventListener('change', changeImage);
+
+        function changeImage(event){
+            var file = event.target.files[0];
+
+            var reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById("picture").setAttribute('src', event.target.result);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
     </script>
 
 @endsection
