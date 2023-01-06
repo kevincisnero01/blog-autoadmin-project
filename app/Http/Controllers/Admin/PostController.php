@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -22,7 +22,6 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::pluck('name','id');
-
         $categories->prepend('Seleccione un elemento','');
 
         $tags = Tag::all();
@@ -30,7 +29,7 @@ class PostController extends Controller
         return view('admin.posts.create',compact('categories','tags'));
     }
 
-    public function store(StorePostRequest $request)
+    public function store(PostRequest $request)
     {
         //return $request->all();
         $post = Post::create($request->all());
@@ -50,4 +49,15 @@ class PostController extends Controller
 
         return redirect()->route('admin.posts.index')->with('status','Registro Exitoso');
     }
+
+    public function edit(Post $post)
+    {
+        $categories = Category::pluck('name','id');
+        $categories->prepend('Seleccione un elemento','');
+
+        $tags = Tag::all();
+
+        return view('admin.posts.edit', compact('post','categories','tags'));
+    }
+
 }

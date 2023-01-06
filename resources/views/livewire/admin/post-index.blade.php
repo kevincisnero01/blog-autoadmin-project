@@ -19,7 +19,7 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->name }}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Editar</a>
+                            <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
