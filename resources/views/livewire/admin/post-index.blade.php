@@ -20,7 +20,11 @@
                         <td>{{ $post->name }}</td>
                         <td>
                             <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary">Editar</a>
-                            <a href="#" class="btn btn-danger">Eliminar</a>
+                            <form action="{{ route('admin.posts.destroy', $post) }}" method="post" class="d-inline-block" onclick="return confirm('¿Estas seguro de eliminar el registro?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"  class="btn btn-danger">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                 @empty
