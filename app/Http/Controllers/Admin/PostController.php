@@ -31,7 +31,6 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        //return $request->all();
         $post = Post::create($request->all());
 
         if($request->file('file')){
@@ -62,7 +61,32 @@ class PostController extends Controller
 
     public function update(PostRequest $request,Post $post)
     {
-        return $request->all();
+        $post->update($request->all());
+
+        if($request->file('file'))
+        {
+            $url = Storage::put('posts', $request->file('file'));
+
+            if($post->image)
+            {
+                Storage::delete($post->image->url);
+
+                $post->image->update([
+                    'url' => $url
+                ]);
+
+            }else{
+                $post->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        if($request->tags){
+            $post->tags()->sync($request->tags);
+        }
+
+        return redirect()->route('admin.posts.edit', $post)->with('status', 'El post fue actualizado con exito.');
     }
 
 }
