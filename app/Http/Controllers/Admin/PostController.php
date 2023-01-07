@@ -60,7 +60,7 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post','categories','tags'));
     }
 
-    public function update(PostRequest $post, Request $request)
+    public function update(PostRequest $request,Post $post)
     {
         return $request->all();
     }

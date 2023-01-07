@@ -29,12 +29,19 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
+        $post = $this->route()->parameter('post');
+
         $rules = [
             'name' => 'required|string',
-            'slug' => 'required|string',
+            'slug' => 'required|string|unique:posts',
             'status' => 'required|in:1,2',
             'file' => 'image'
         ];
+
+        if($post)
+        {
+            $rules['slug'] = 'required|string|unique:posts,slug,' . $post->id;
+        }
 
         if($this->status == 2)
         {
