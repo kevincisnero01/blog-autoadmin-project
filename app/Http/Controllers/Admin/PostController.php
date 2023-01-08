@@ -30,7 +30,7 @@ class PostController extends Controller
     }
 
     public function store(PostRequest $request)
-    {
+    {   
         $post = Post::create($request->all());
 
         if($request->file('file')){
@@ -90,9 +90,11 @@ class PostController extends Controller
     }
 
     public function destroy(Post $post)
-    {
-        $post->delete();
+    {   
 
+        $post->delete();
+        $post->image->delete();
+        
         return redirect()->route('admin.posts.index')->with('status', 'El post fue eliminado con exito.');
     }
 
