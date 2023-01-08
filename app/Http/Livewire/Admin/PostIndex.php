@@ -18,10 +18,19 @@ class PostIndex extends Component
     }
 
     public function render()
-    {
-        $posts = Post::where('name','LIKE',"%$this->search%")
+    {   
+        $user = auth()->user();   
+
+        if($user->hasRole('Admin')){
+            $posts = Post::where('name','LIKE',"%$this->search%")
                     ->latest('id')
                     ->paginate();
+        }else{
+            $posts = Post::where('name','LIKE',"%$this->search%")
+                    ->where('user_id', $user->id)
+                    ->latest('id')
+                    ->paginate();
+        }
 
         return view('livewire.admin.post-index', compact('posts'));
     }
