@@ -322,7 +322,7 @@ return [
             'can' => 'admin.users.index'
         ],
         [
-            'text' => 'Roles & Permisos',
+            'text' => 'Roles y Permisos',
             'route' => 'admin.roles.index',
             'icon' => 'fas fa-users-cog fa-fw',
             /*'can' => 'admin.users.index'*/
@@ -343,13 +343,13 @@ return [
         [
             'text' => 'Lista de post',
             'route'  => 'admin.posts.index',
-            'icon' => 'fas fa-fw fa-clipboard',
+            'icon' => 'fas fa-file-signature',
             'can' => 'admin.posts.index'
         ],
         [
             'text' => 'Crear post',
             'route'  => 'admin.posts.create',
-            'icon' => 'fas fa-fw fa-file',
+            'icon' => 'fas fa-plus-circle',
             'can' => 'admin.posts.create'
         ],
     ],
