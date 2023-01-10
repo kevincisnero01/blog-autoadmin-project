@@ -42,7 +42,7 @@ class RoleController extends Controller
         $data = $request->validate([
             'name' => 'required'
         ]);
-        
+
         //CREATE ROLE
         $role = Role::create($data);
 
@@ -53,25 +53,15 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all();
+        return view('admin.roles.edit', compact('permissions','role'));
     }
 
     /**
@@ -81,9 +71,19 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        //CREATE ROLE
+        $role->update($request->all());
+
+        //ASIGGN PERMISSIONS
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('admin.roles.edit',$role)->with('status', 'El Role fue creado con exito.');
     }
 
     /**

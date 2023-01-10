@@ -10,26 +10,10 @@
 <div class="card"> 
 <div class="card-body"> 
     {!! Form::open(['route' => 'admin.roles.store']) !!}
-        <div class="form-group">
-            {!! Form::label('name','Nombre') !!}
-            {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Ingrese un nombre']) !!}
-        </div>
-
-        <hr>
-
-        <h2 class="h3">Listado de Permisos</h2>
-
-        @foreach($permissions as $permission)
-        <div>
-            <label>
-                {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'mr-1']) !!}
-                <i class="{{ $permission->icon }} mr-1"></i>
-                <span class="text-uppercase">{{ $permission->description }}</span>
-            </label>
-        </div>
-        @endforeach
         
-        {!! Form::submit('Crear Rol',['class' => 'btn btn-large btn-primary']) !!}
+        @include('admin.roles.partials.form')
+        
+        {!! Form::submit('Crear Rol',['class' => 'btn btn-lg btn-primary']) !!}
 
     {!! Form::close() !!}
 </div>  
