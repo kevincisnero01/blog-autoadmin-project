@@ -25,6 +25,8 @@
         
         {!! Form::submit('Editar Rol',['class' => 'btn btn-lg btn-primary']) !!}
 
+        <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary mt-2 float-right">Volver</a>
+
     {!! Form::close() !!}
 </div>  
 </div>  

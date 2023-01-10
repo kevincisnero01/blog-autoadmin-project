@@ -27,7 +27,7 @@
                         <a href="{{ route('admin.roles.edit',$role) }}" class="btn btn-sm btn-primary"> Editar</a>
                     </td>
                     <td width="10px">
-                        <form action="{{ route('admin.roles.destroy',$role) }}" method="post" class="d-inline-block">
+                        <form action="{{ route('admin.roles.destroy',$role) }}" method="post" class="d-inline-block" onclick="return confirm('¿Esta seguro de elminar el registro?')">
                             @csrf 
                             @method("DELETE")    
                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
