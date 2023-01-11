@@ -13,7 +13,8 @@
         <!-- Styles -->
         @livewireStyles
         
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="/css/app.css"
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -31,6 +32,6 @@
 
         @livewireScripts
         
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="/js/app.js"></script>
     </body>
 </html>

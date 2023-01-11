@@ -7,7 +7,7 @@
                 style="background-image: 
                 url(
                     @if($post->image)
-                        {{asset(Storage::url($post->image->url))}}
+                        {{ Storage::url($post->image->url) }}
                     @else
                         https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg
                     @endif
