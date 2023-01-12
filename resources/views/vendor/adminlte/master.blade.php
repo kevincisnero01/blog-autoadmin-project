@@ -24,13 +24,13 @@
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
-        <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
 
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
 
-        <link rel="stylesheet" href="vendor/adminlte/dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.min.css">
 
         @if(config('adminlte.google_fonts.allowed', true))
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -83,14 +83,14 @@
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
         {{-- Configured Scripts --}}
         @include('adminlte::plugins', ['type' => 'js'])
 
-        <script src="vendor/adminlte/dist/js/adminlte.min.js"></script>
+        <script src="/vendor/adminlte/dist/js/adminlte.min.js"></script>
     @else
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
