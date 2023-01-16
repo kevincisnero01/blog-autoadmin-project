@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($name),
             'extract' => $this->faker->text(100),
             'body' => $this->faker->text(600),
-            'status' => $this->faker->randomElement([1,2]),
+            'status' => 2,
             'category_id' => Category::all()->random()->id,
             'user_id' => User::all()->random()->id
         ];
