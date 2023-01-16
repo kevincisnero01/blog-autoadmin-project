@@ -15,24 +15,58 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //1 ===== CREATE ROLES  ===== 
-        $role1 = Role::create(['name' => 'Admin']);
-        $role2 = Role::create(['name' => 'Blogger']);
+    //1 ===== CREATE ROLES  =====
+        $role1 = Role::create(['name' => 'Root']);
+        $role2 = Role::create(['name' => 'Admin']);
+        $role3 = Role::create(['name' => 'Blogger']);
+        $role4 = Role::create(['name' => 'Guest']);
 
-        //2 ===== CREATE PERMISSIONS AND ASSIGN THEM FOR EACH ROLE ===== 
+    //2 ===== CREATE PERMISSIONS AND ASSIGN THEM FOR EACH ROLE ===== 
 
-        // === HOME PERMISSONS ===
+    // === HOME PERMISSONS ===
         Permission::create([
             'name' => 'admin.home',
             'description' => 'Ver Area Administrativa',
             'icon' => 'fas fa-tachometer-alt fa-fw'
-        ])->syncRoles([$role1,$role2]);
-        // === USERS PERMISSONS ===
+        ])->syncRoles([$role1,$role2,$role3,$role4]);
+    
+    // === ROLE & PERMISSONS ===
+        Permission::create([
+            'name' => 'admin.roles.index',
+            'description' => 'Ver Roles y Permisos',
+            'icon' => 'fas fa-users-cog fa-fw'
+        ])->syncRoles([$role1]);
+
+        Permission::create([
+            'name' => 'admin.roles.create',
+            'description' => 'Crear Roles y Permisos',
+            'icon' => 'fas fa-users-cog fa-fw'
+        ])->syncRoles([$role1]);
+
+        Permission::create([
+            'name' => 'admin.roles.edit',
+            'description' => 'Editar Roles y Permisos',
+            'icon' => 'fas fa-users-cog fa-fw'
+        ])->syncRoles([$role1]);
+        
+        Permission::create([
+            'name' => 'admin.roles.update',
+            'description' => 'Actualizar  Roles y Permisos',
+            'icon' => 'fas fa-users-cog fa-fw'
+        ])->syncRoles([$role1]);
+
+        Permission::create([
+            'name' => 'admin.roles.destroy',
+            'description' => 'Eliminar Roles y Permisos',
+            'icon' => 'fas fa-users-cog fa-fw'
+        ])->syncRoles([$role1]);
+
+    // === USERS PERMISSONS ===
         Permission::create([
             'name' => 'admin.users.index',
             'description' => 'Ver Usuarios',
             'icon' => 'fas fa-users'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.users.create',
@@ -58,98 +92,98 @@ class RoleSeeder extends Seeder
             'icon' => 'fas fa-users'
         ])->syncRoles([$role1]);
 
-        // === CATEGORIES PERMISSONS ===
+    // === CATEGORIES PERMISSONS ===
         Permission::create([
             'name' => 'admin.categories.index',
             'description' => 'Ver Categorias',
             'icon' => 'fab fa-fw fa-buffer'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3,$role4]);
 
         Permission::create([
             'name' => 'admin.categories.create',
             'description' => 'Crear Categoria',
             'icon' => 'fab fa-fw fa-buffer'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.categories.edit',
             'description' => 'Edita Categoria',
             'icon' => 'fab fa-fw fa-buffer'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.categories.update',
             'description' => 'Actualizar Categoria',
             'icon' => 'fab fa-fw fa-buffer'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.categories.destroy',
             'description' => 'Eliminar Categoria',
             'icon' => 'fab fa-fw fa-buffer'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
-        // === TAGS PERMISSONS ===
+    // === TAGS PERMISSONS ===
         Permission::create([
             'name' => 'admin.tags.index',
             'description' => 'Ver Etiquetas',
             'icon' => 'fas fa-tags'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3,$role4]);
 
         Permission::create([
             'name' => 'admin.tags.create',
             'description' => 'Crear Etiqueta',
             'icon' => 'fas fa-tags'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.tags.edit',
             'description' => 'Editar Etiqueta',
             'icon' => 'fas fa-tags'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.tags.update',
             'description' => 'Actualizar Etiqueta',
             'icon' => 'fas fa-tags'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
         Permission::create([
             'name' => 'admin.tags.destroy',
             'description' => 'Eliminar Etiqueta',
             'icon' => 'fas fa-tags'
-        ])->syncRoles([$role1]);
+        ])->syncRoles([$role1,$role2]);
 
-        // === POSTS PERMISSONS ===
+    // === POSTS PERMISSONS ===
         Permission::create([
             'name' => 'admin.posts.index',
             'description' => 'Ver Publicaciones',
             'icon' => 'fas fa-file-signature'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3,$role4]);
 
         Permission::create([
             'name' => 'admin.posts.create',
             'description' => 'Crear Publicacion',
             'icon' => 'fas fa-file-signature'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3]);
 
         Permission::create([
             'name' => 'admin.posts.edit',
             'description' => 'Editar Publicacion',
             'icon' => 'fas fa-file-signature'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3]);
 
         Permission::create([
             'name' => 'admin.posts.update',
             'description' => 'Actualizar Publicacion',
             'icon' => 'fas fa-file-signature'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3]);
 
         Permission::create([
             'name' => 'admin.posts.destroy',
             'description' => 'Eliminar Publicacion',
             'icon' => 'fas fa-file-signature'
-        ])->syncRoles([$role1,$role2]);
+        ])->syncRoles([$role1,$role2,$role3]);
 
     }
 }

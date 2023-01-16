@@ -23,9 +23,17 @@ class UserSeeder extends Seeder
         $image = Image::find(1);
         
         User::factory()->create([
+            'name' => 'Root User',
+            'email' => 'root@gmail.com',
+            'password' => bcrypt('root'),
+            'profile_photo_path' =>  $image->url,
+
+        ])->assignRole('Root');
+
+        User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('admin'),
             'profile_photo_path' =>  $image->url,
 
         ])->assignRole('Admin');
@@ -34,10 +42,18 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Blog User',
             'email' => 'blog@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('blog'),
             'profile_photo_path' =>  $image->url,
 
         ])->assignRole('Blogger');
+
+        User::factory()->create([
+            'name' => 'Guest User',
+            'email' => 'guest@gmail.com',
+            'password' => bcrypt('guest'),
+            'profile_photo_path' =>  $image->url,
+
+        ])->assignRole('Guest');
 
         //User::factory(10)->create();
     }
