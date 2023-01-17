@@ -1,0 +1,26 @@
+id;name;slug;color
+1;Frontend;frontend;purple
+2;Backend;backend;purple
+3;Base de Datos;base de Datos;purple
+4;Servidores;servidores;purple
+5;Testing;testing;purple
+6;Emprendimiento;emprendimiento;orange
+7;Autoempleo;autoempleo;orange
+8;Freelancer;freelancer;orange
+9;Libertad Financiera;libertad-financiera;orange
+10;Transformacion Digital;transformacion-digital;orange
+11;Inteligencia Emocional;inteligencia-emocional;red
+12;Autoliderazgo;autoliderazgo;red
+13;Productividad;productividad;red
+14;Lectura;lectura;red
+15;Comunicación Asertiva;comunicacion-asertiva;red
+16;Inbound;inbound;blue
+17;Outbound;outbound;blue
+18;Landing Page;landing-page;blue
+19;Lead;lead;blue
+20;Influencer;influencer;blue
+21;Diseño Grafico;diseño-grafico;brown
+22;Diseño UI;dise?o-ui;brown
+23;Diseño UX;diseño-ux;brown
+24;Prototipos;prototipos;brown
+25;Ilustración;ilustracion;brown
