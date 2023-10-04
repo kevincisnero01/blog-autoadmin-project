@@ -41,7 +41,7 @@
 
 @section('js')
     <script src="/vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <script src="/vendor/ckeditor5/build/ckeditor.js"></script>
 
     <script>
 

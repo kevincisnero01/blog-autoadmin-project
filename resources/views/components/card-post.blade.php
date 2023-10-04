@@ -18,16 +18,7 @@
 
     <div class="px-6 pb-4">
         @foreach ($post->tags as $tag)
-            <a href="{{ route('posts.tag',$tag) }}" class="
-                inline-block
-                rounded-full 
-                mr-2 
-                px-3 
-                py-1
-                text-sm
-                bg-gray-200 
-                text-gray-700"
-            >
+            <a href="{{ route('posts.tag',$tag) }}" class="inline-block rounded-full mr-2 px-3 py-1 text-sm bg-gray-200 text-gray-700">
                 {{ $tag->name }}
             </a>
         @endforeach

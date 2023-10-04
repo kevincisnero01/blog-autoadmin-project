@@ -21,7 +21,7 @@
                             </a>    
                         @endforeach
                     </div>
-                    <h1 class="text-4xl text-white leading-8 font-bold backdrop-blur-sm backdrop-brightness-200 bg-white/30 border-1 rounded-lg p-1">
+                    <h1 class="text-4xl leading-8 text_white_imp font-bold bg-secondary/50 drop-shadow-lg border-1 rounded-lg p-1">
                         <a href="{{ route('posts.show', $post) }}">
                             {{ $post->name }}
                         </a>

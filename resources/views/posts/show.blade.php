@@ -17,7 +17,7 @@
                 @endif
             </figure>
 
-            <div class="text-base text-gray-500">
+            <div class="ck-content">
                 {!! $post->body !!}
             </div>
         </div>
