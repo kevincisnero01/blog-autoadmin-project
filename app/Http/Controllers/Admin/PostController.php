@@ -71,13 +71,14 @@ class PostController extends Controller
             $this->authorize('author', $post);
         }
 
-        
         $post->update($request->all());
 
         if($request->file('file'))
         {
-            $url = Storage::put('posts', $request->file('file'));
-
+            
+            $url = $request->file('file')->store('/', 'posts');
+            //$url = Storage::put('posts', $request->file('file'));
+            
             if($post->image)
             {
                 Storage::delete($post->image->url);

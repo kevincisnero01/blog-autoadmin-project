@@ -7,7 +7,7 @@
                 style="background-image: 
                 url(
                     @if($post->image)
-                        {{ Storage::url($post->image->url) }}
+                        {{ Storage::disk('posts')->url($post->image->url) }}
                     @else
                         https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg
                     @endif
@@ -16,12 +16,12 @@
                 <div class=" w-full h-full px-8 flex flex-col justify-center">
                     <div>
                         @foreach ($post->tags as $tag)
-                            <a href="{{ route('posts.tag',$tag) }}" class="inline-block h-6 px-3 text-white bg-{{$tag->color}}-600 mb-2 rounded-full" >
+                            <a href="{{ route('posts.tag',$tag) }}" class="inline-block h-6 px-3 text-white bg-primary font-bold mb-2 rounded-full" >
                                 {{ $tag->name }}
                             </a>    
                         @endforeach
                     </div>
-                    <h1 class="text-4xl  text-white leading-8 font-bold">
+                    <h1 class="text-4xl text-white leading-8 font-bold backdrop-blur-sm backdrop-brightness-200 bg-white/30 border-1 rounded-lg p-1">
                         <a href="{{ route('posts.show', $post) }}">
                             {{ $post->name }}
                         </a>

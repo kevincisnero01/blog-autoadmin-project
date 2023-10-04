@@ -11,7 +11,7 @@
         <div class="lg:col-span-2">
             <figure>
                 @if($post->image)
-                    <img class="w-full h-80 object-cover object-center my-2" src="{{ Storage::url($post->image->url)}}" alt="image">
+                    <img class="w-full h-80 object-cover object-center my-2" src="{{ Storage::disk('posts')->url($post->image->url)}}" alt="image">
                 @else
                     <img class="w-full h-80 object-cover object-center my-2" src="https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg" alt="image">
                 @endif
@@ -30,7 +30,7 @@
                     <li class="mb-4">
                         <a class="flex" href="{{ route('posts.show',$item) }}">
                             @if($item->image)
-                                <img class="w-24 h-24 object-cover object-center" src="{{ Storage::url($item->image->url)}}" alt="image">
+                                <img class="w-24 h-24 object-cover object-center" src="{{ Storage::disk('posts')->url($item->image->url)}}" alt="image">
                             @else
                                 <img class="w-24 h-24 object-cover object-center" src="https://cdn.pixabay.com/photo/2022/12/03/15/00/maui-7632875_960_720.jpg" alt="image">
                             @endif
